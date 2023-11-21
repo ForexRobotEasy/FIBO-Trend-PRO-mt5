@@ -1,0 +1,195 @@
+mql5
+//+------------------------------------------------------------------+
+//|                                             FIBO Trend PRO mt5   |
+//|                                  Developer's Site: forexroboteasy.com |
+//|                                             Development: Forex Robot Easy Team |
+//|                                                                  |
+//+------------------------------------------------------------------+
+
+// Define the input parameters
+input bool tradeAccordingToTrend = true; // Flag to determine whether to trade according to the trend or against it
+
+// Define global variables
+int trendColor; // Variable to store the current trend color
+double fiboLevel; // Variable to store the current Fibonacci level
+
+//+------------------------------------------------------------------+
+//| Custom indicator initialization function                         |
+//|                                                                  |
+//| Inputs:                                                          |
+//|    None                                                          |
+//| Outputs:                                                         |
+//|    None                                                          |
+//+------------------------------------------------------------------+
+int OnInit()
+{
+    // Initializing the indicator and setting up necessary parameters
+    // ...
+
+    return(INIT_SUCCEEDED);
+}
+
+//+------------------------------------------------------------------+
+//| Custom indicator iteration function                              |
+//|                                                                  |
+//| Inputs:                                                          |
+//|    None                                                          |
+//| Outputs:                                                         |
+//|    None                                                          |
+//+------------------------------------------------------------------+
+int OnCalculate(const int rates_total,
+                const int prev_calculated,
+                const datetime &time[],
+                const double &open[],
+                const double &high[],
+                const double &low[],
+                const double &close[],
+                const long &tick_volume[],
+                const long &volume[],
+                const int &spread[])
+{
+    // Perform trend analysis and determine the current trend color
+    trendColor = DetermineTrendColor();
+
+    // Perform Fibonacci level analysis and determine the current level
+    fiboLevel = DetermineFiboLevel();
+
+    // Check if the current trend allows trading
+    if (tradeAccordingToTrend)
+    {
+        // Trade according to the trend
+        TradeAccordingToTrend();
+    }
+    else
+    {
+        // Trade against the trend
+        TradeAgainstTrend();
+    }
+
+    return(rates_total);
+}
+
+//+------------------------------------------------------------------+
+//| Function to determine the current trend color                     |
+//|                                                                  |
+//| Inputs:                                                          |
+//|    None                                                          |
+//| Outputs:                                                         |
+//|    int - The current trend color                                  |
+//+------------------------------------------------------------------+
+int DetermineTrendColor()
+{
+    // Perform trend analysis and determine the current trend color
+    // ...
+
+    return trendColor;
+}
+
+//+------------------------------------------------------------------+
+//| Function to determine the current Fibonacci level                 |
+//|                                                                  |
+//| Inputs:                                                          |
+//|    None                                                          |
+//| Outputs:                                                         |
+//|    double - The current Fibonacci level                           |
+//+------------------------------------------------------------------+
+double DetermineFiboLevel()
+{
+    // Perform Fibonacci level analysis and determine the current level
+    // ...
+
+    return fiboLevel;
+}
+
+//+------------------------------------------------------------------+
+//| Function to trade according to the trend                          |
+//|                                                                  |
+//| Inputs:                                                          |
+//|    None                                                          |
+//| Outputs:                                                         |
+//|    None                                                          |
+//+------------------------------------------------------------------+
+void TradeAccordingToTrend()
+{
+    // Check if the current trend is bullish
+    if (trendColor == COLOR_GREEN)
+    {
+        // Place a buy trade
+        OpenBuyTrade();
+    }
+    // Check if the current trend is bearish
+    else if (trendColor == COLOR_RED)
+    {
+        // Place a sell trade
+        OpenSellTrade();
+    }
+}
+
+//+------------------------------------------------------------------+
+//| Function to trade against the trend                               |
+//|                                                                  |
+//| Inputs:                                                          |
+//|    None                                                          |
+//| Outputs:                                                         |
+//|    None                                                          |
+//+------------------------------------------------------------------+
+void TradeAgainstTrend()
+{
+    // Check if the price hits extreme levels of the Fibonacci level
+    if (fiboLevel < 0.382 || fiboLevel > 0.618)
+    {
+        // Place a counter-trade
+        OpenCounterTrade();
+    }
+}
+
+//+------------------------------------------------------------------+
+//| Function to open a buy trade                                      |
+//|                                                                  |
+//| Inputs:                                                          |
+//|    None                                                          |
+//| Outputs:                                                         |
+//|    None                                                          |
+//+------------------------------------------------------------------+
+void OpenBuyTrade()
+{
+    // Open a buy trade based on the current market conditions
+    // ...
+
+    // Logical conclusion
+    Print('Buy trade opened');
+}
+
+//+------------------------------------------------------------------+
+//| Function to open a sell trade                                     |
+//|                                                                  |
+//| Inputs:                                                          |
+//|    None                                                          |
+//| Outputs:                                                         |
+//|    None                                                          |
+//+------------------------------------------------------------------+
+void OpenSellTrade()
+{
+    // Open a sell trade based on the current market conditions
+    // ...
+
+    // Logical conclusion
+    Print('Sell trade opened');
+}
+
+//+------------------------------------------------------------------+
+//| Function to open a counter-trade                                  |
+//|                                                                  |
+//| Inputs:                                                          |
+//|    None                                                          |
+//| Outputs:                                                         |
+//|    None                                                          |
+//+------------------------------------------------------------------+
+void OpenCounterTrade()
+{
+    // Open a counter-trade based on the current market conditions
+    // ...
+
+    // Logical conclusion
+    Print('Counter-trade opened');
+}
